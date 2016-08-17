@@ -8,20 +8,18 @@ require"connection.php";
     $confirm_password = $_POST["confirm_password"];
     $verification_code = $_POST["verification_code"];
 
-  $sql_query = "insert into user_info values ($name, $country, $phone, $password, $confirm_password, $verification_code);";
+  $sql_query = "insert into  values ('$name', '$country', '$phone', '$password', '$confirm_password', '$verification_code');";
 
-   if (mysqli_query($con, $sql_query))
-   {
-   echo"<h3>Data Insertion Success...</h3>";
-   }
-   else
-   {
-    echo "Data Insertion Error".mysqli_error($con);
-   }
-    
-
-
-
+if(mysqli_query($con,$sql_query))
+{
+echo"<h3>Database Insertion Success...</h3>";
+}
+else
+{
+echo "Data insertion error".mysqli_error($con);
+}
 
 
 ?>
+
+
