@@ -1,0 +1,30 @@
+<?php
+require "connection.php";
+ 
+    $phone = $_POST["phone"];
+    $password = $_POST["password"];
+ 
+ 
+    $statement = mysqli_prepare($con, "SELECT * FROM loginsignup WHERE phone = ? AND password = ?");
+    mysqli_stmt_bind_param($statement, "ss", $phone, $password);
+    mysqli_stmt_execute($statement);
+ 
+    mysqli_stmt_store_result($statement);
+    mysqli_stmt_bind_result($statement, $user_id, $name, $country, $phone, $password, $confirm_password, $verification_code);
+ 
+    $response = array();
+    $response["success"] = false;  
+ 
+    while(mysqli_stmt_fetch($statement)){
+        $response["success"] = true;  
+        $response["name"] = $name;
+        $response["country"] = $country;
+        $response["phone"] = $phone;
+        $response["password"] = $password;
+        $response["confirm_password"] = $confirm_password;
+        $response["verification_code"] = $verification_code;
+    }
+ 
+    echo json_encode($response);
+?>
+ 
