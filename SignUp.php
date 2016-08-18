@@ -15,7 +15,7 @@ $sql_query = "insert into LoginSignUp values ('$name', '$country', '$phone', '$p
  
 if(mysqli_query($con,$sql_query))  
  {  
-// echo "<h3> Data insertion Success </h3>; 
+// echo "<h3> Data insertion Success </h3>"; 
  }  
  else  
  {   
